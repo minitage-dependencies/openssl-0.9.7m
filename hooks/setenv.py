@@ -7,7 +7,7 @@ uname=os.uname()[0]
 if uname == 'Darwin':
     os_ldflags=' -mmacosx-version-min=10.5.0'
 
-def appendEnvVar(env,var,sep=":",before=True):
+def append_env_var(env,var,sep=":",before=True):
     """ append text to a environnement variable
     @param env String variable to set
     @param before append before or after the variable"""
@@ -16,9 +16,9 @@ def appendEnvVar(env,var,sep=":",before=True):
 	else:os.environ[env] = "%s%s%s" % (os.environ.get(env,''),sep,path)
 
 def patchopenssl(options,buildout):
-    appendEnvVar('LDFLAGS', [' %s ' % os_ldflags,buildout['flags']['ldflags']],sep=' ',before=False)
-    appendEnvVar('CFLAGS',  [buildout['flags']['cflags']],sep=' ',before=False)
-    appendEnvVar('LD_RUN_PATH',  [buildout['flags']['ldrun']],sep=':',before=False)
+    append_env_var('LDFLAGS', [' %s ' % os_ldflags,buildout['flags']['ldflags']],sep=' ',before=False)
+    append_env_var('CFLAGS',  [buildout['flags']['cflags']],sep=' ',before=False)
+    append_env_var('LD_RUN_PATH',  [buildout['flags']['ldrun']],sep=':',before=False)
 
     # if gmake is setted. taking it as the make cmd !
     # be careful to have a 'gmake' in your path
